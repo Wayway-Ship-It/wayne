@@ -1,0 +1,193 @@
+# 汽车配件仓库管理系统文件功能说明
+
+## 项目概述
+
+汽车配件仓库管理系统是一个基于Spring Boot和Vue.js的前后端分离项目，用于管理汽车配件的入库、出库、库存和盘点等操作。系统采用分层架构，后端负责业务逻辑和数据处理，前端负责用户界面和交互。
+
+## 后端文件功能说明
+
+### 1. 控制器（Controllers）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| AuthController | 处理用户认证相关请求，包括登录和注册 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\AuthController.java |
+| InboundController | 处理入库管理相关请求，包括入库单的创建、查询和删除 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\InboundController.java |
+| OutboundController | 处理出库管理相关请求，包括出库单的创建、审批、查询和删除 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\OutboundController.java |
+| PartCategoryController | 处理配件分类管理相关请求，包括分类的增删改查 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\PartCategoryController.java |
+| PartController | 处理配件信息管理相关请求，包括配件的增删改查 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\PartController.java |
+| StockCheckController | 处理库存盘点管理相关请求，包括盘点单的创建、完成和查询 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\StockCheckController.java |
+| StockController | 处理库存管理相关请求，包括库存信息的查询和监控 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\StockController.java |
+| TestController | 用于测试API接口的可用性，提供测试数据 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\TestController.java |
+| UserController | 处理用户管理相关请求，包括用户的增删改查和密码修改 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\controller\UserController.java |
+
+### 2. 服务（Services）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| InboundService | 处理入库业务逻辑，包括入库单的创建、删除和查询 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\InboundService.java |
+| OutboundService | 处理出库业务逻辑，包括出库单的创建、审批、删除和查询 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\OutboundService.java |
+| PartCategoryService | 处理配件分类业务逻辑，包括分类的增删改查 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\PartCategoryService.java |
+| PartCategoryServiceImpl | 配件分类服务的实现类，具体处理分类的增删改查逻辑 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\impl\PartCategoryServiceImpl.java |
+| PartService | 处理配件信息业务逻辑，包括配件的增删改查 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\PartService.java |
+| StockCheckService | 处理库存盘点业务逻辑，包括盘点单的创建、完成和查询 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\StockCheckService.java |
+| StockService | 处理库存管理业务逻辑，包括库存信息的查询和监控 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\StockService.java |
+| UserService | 处理用户管理业务逻辑，包括用户的登录、注册、增删改查和密码修改 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\service\UserService.java |
+
+### 3. 实体（Entities）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| Inbound | 入库单实体类，包含入库单的基本信息 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\entity\Inbound.java |
+| Outbound | 出库单实体类，包含出库单的基本信息 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\entity\Outbound.java |
+| Part | 配件实体类，包含配件的基本信息 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\entity\Part.java |
+| PartCategory | 配件分类实体类，包含分类的基本信息 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\entity\PartCategory.java |
+| Stock | 库存实体类，包含库存的基本信息 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\entity\Stock.java |
+| StockCheck | 库存盘点实体类，包含盘点单的基本信息 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\entity\StockCheck.java |
+| User | 用户实体类，包含用户的基本信息 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\entity\User.java |
+
+### 4. 数据传输对象（DTOs）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| LoginRequest | 登录请求DTO，包含登录所需的用户名和密码 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\dto\LoginRequest.java |
+| LoginResponse | 登录响应DTO，包含登录成功后的用户信息和token | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\dto\LoginResponse.java |
+
+### 5. 数据访问层（Mappers）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| InboundMapper | 入库单数据访问接口，处理入库单的数据库操作 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\mapper\InboundMapper.java |
+| OutboundMapper | 出库单数据访问接口，处理出库单的数据库操作 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\mapper\OutboundMapper.java |
+| PartCategoryMapper | 配件分类数据访问接口，处理分类的数据库操作 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\mapper\PartCategoryMapper.java |
+| PartMapper | 配件数据访问接口，处理配件的数据库操作 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\mapper\PartMapper.java |
+| StockCheckMapper | 库存盘点数据访问接口，处理盘点单的数据库操作 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\mapper\StockCheckMapper.java |
+| StockMapper | 库存数据访问接口，处理库存的数据库操作 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\mapper\StockMapper.java |
+| UserMapper | 用户数据访问接口，处理用户的数据库操作 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\mapper\UserMapper.java |
+
+### 6. 工具类（Utils）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| JwtUtil | JWT工具类，用于生成和验证JWT token | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\util\JwtUtil.java |
+| PasswordGenerator | 密码生成工具类，用于生成随机密码 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\util\PasswordGenerator.java |
+
+### 7. 配置文件（Configs）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| CorsConfig | CORS配置类，用于处理跨域请求 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\config\CorsConfig.java |
+| MyMetaObjectHandler | MyBatis Plus元对象处理器，用于自动填充创建时间和更新时间 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\config\MyMetaObjectHandler.java |
+| SecurityConfig | Spring Security配置类，用于配置安全相关的设置 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\config\SecurityConfig.java |
+| application.yml | 应用配置文件，包含数据库连接、服务器端口等配置 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\resources\application.yml |
+
+### 8. 其他文件
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| Result.java | 统一响应结果类，用于封装API响应 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\common\Result.java |
+| WarehouseApplication.java | 应用主类，用于启动Spring Boot应用 | d:\TRAE\index\auto-parts-warehouse-backend\src\main\java\com\autoparts\warehouse\WarehouseApplication.java |
+| pom.xml | Maven项目配置文件，包含项目依赖和构建配置 | d:\TRAE\index\auto-parts-warehouse-backend\pom.xml |
+
+## 前端文件功能说明
+
+### 1. 视图组件（Views）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| Login.vue | 登录页面，处理用户登录和注册 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\Login.vue |
+| Layout.vue | 布局组件，包含侧边栏和顶部导航 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\Layout.vue |
+| Dashboard.vue | 首页，显示系统概览和统计信息 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\Dashboard.vue |
+| UserList.vue | 用户管理页面，处理用户的增删改查 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\user\UserList.vue |
+| UserProfile.vue | 个人信息页面，处理用户个人信息和密码修改 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\user\UserProfile.vue |
+| CategoryList.vue | 配件分类管理页面，处理分类的增删改查 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\part\CategoryList.vue |
+| PartList.vue | 配件信息管理页面，处理配件的增删改查 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\part\PartList.vue |
+| InboundList.vue | 入库管理页面，处理入库单的创建和查询 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\inbound\InboundList.vue |
+| OutboundList.vue | 出库管理页面，处理出库单的创建、审批和查询 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\outbound\OutboundList.vue |
+| StockList.vue | 库存管理页面，显示库存信息和监控数据 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\stock\StockList.vue |
+| StockCheckList.vue | 库存盘点页面，处理盘点单的创建、完成和查询 | d:\TRAE\index\auto-parts-warehouse-frontend\src\views\stock\StockCheckList.vue |
+
+### 2. 路由（Router）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| index.js | 路由配置文件，定义系统的路由结构 | d:\TRAE\index\auto-parts-warehouse-frontend\src\router\index.js |
+
+### 3. 状态管理（Store）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| index.js | Vuex状态管理配置文件，管理全局状态 | d:\TRAE\index\auto-parts-warehouse-frontend\src\store\index.js |
+
+### 4. 资源文件（Assets）
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| background.jpg | 登录页面背景图片 | d:\TRAE\index\auto-parts-warehouse-frontend\src\assets\background.jpg |
+
+### 5. 其他文件
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| App.vue | 应用根组件，包含应用的基本结构 | d:\TRAE\index\auto-parts-warehouse-frontend\src\App.vue |
+| main.js | 应用入口文件，初始化Vue应用 | d:\TRAE\index\auto-parts-warehouse-frontend\src\main.js |
+| package.json | npm项目配置文件，包含项目依赖和脚本 | d:\TRAE\index\auto-parts-warehouse-frontend\package.json |
+| vue.config.js | Vue CLI配置文件，包含Vue应用的配置 | d:\TRAE\index\auto-parts-warehouse-frontend\vue.config.js |
+| index.html | HTML模板文件，应用的入口HTML | d:\TRAE\index\auto-parts-warehouse-frontend\public\index.html |
+
+## 数据库文件
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| init.sql | 数据库初始化脚本，包含表结构创建和初始数据插入 | d:\TRAE\index\database\init.sql |
+
+## 启动脚本和配置文件
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| 启动前端.bat | 前端服务启动脚本 | d:\TRAE\index\启动前端.bat |
+| 启动后端.bat | 后端服务启动脚本 | d:\TRAE\index\启动后端.bat |
+| 启动说明.md | 系统启动说明文档 | d:\TRAE\index\启动说明.md |
+| 环境检查.bat | 环境检查脚本，用于检查系统环境 | d:\TRAE\index\环境检查.bat |
+| 配置MySQL环境.bat | MySQL环境配置脚本 | d:\TRAE\index\配置MySQL环境.bat |
+
+## 文档文件
+
+| 文件名称 | 功能描述 | 路径 |
+|---------|---------|------|
+| README.md | 项目说明文档 | d:\TRAE\index\README.md |
+| 完整使用步骤说明书.md | 系统使用步骤说明 | d:\TRAE\index\完整使用步骤说明书.md |
+| 快速开始.md | 系统快速开始指南 | d:\TRAE\index\快速开始.md |
+| 最终环境总结.md | 系统环境配置总结 | d:\TRAE\index\最终环境总结.md |
+| 汽车配件仓库管理系统设计与实现-毕业论文.txt | 系统设计与实现毕业论文 | d:\TRAE\index\汽车配件仓库管理系统设计与实现-毕业论文.txt |
+| 环境安装指南.md | 环境安装指南 | d:\TRAE\index\环境安装指南.md |
+| 环境更新.md | 环境更新说明 | d:\TRAE\index\环境更新.md |
+| 系统使用说明.md | 系统使用说明 | d:\TRAE\index\系统使用说明.md |
+| 系统完整使用说明书.txt | 系统完整使用说明书 | d:\TRAE\index\系统完整使用说明书.txt |
+
+## 系统功能模块关系图
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   前端视图组件   │────>│   后端控制器    │────>│   后端服务层    │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+        ^                       ^                       |
+        |                       |                       v
+        |                       |             ┌─────────────────┐
+        |                       |             │   数据访问层    │
+        |                       |             └─────────────────┘
+        |                       |                       |
+        |                       |                       v
+        |                       |             ┌─────────────────┐
+        |                       └─────────────│    数据库      │
+        |                                     └─────────────────┘
+        |
+        └─────────────────────────────────────┐
+                                              │
+                                  ┌─────────────────┐
+                                  │   前端状态管理  │
+                                  └─────────────────┘
+```
+
+## 总结
+
+汽车配件仓库管理系统通过清晰的分层架构和模块化设计，实现了汽车配件的全生命周期管理。后端采用Spring Boot框架，提供了丰富的API接口；前端采用Vue.js框架，提供了美观、易用的用户界面。系统功能包括用户管理、配件管理、入库管理、出库管理、库存管理和库存盘点等核心功能，满足了汽车配件仓库的日常管理需求。
