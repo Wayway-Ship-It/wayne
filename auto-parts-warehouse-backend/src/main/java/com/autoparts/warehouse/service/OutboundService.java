@@ -155,4 +155,47 @@ public class OutboundService extends ServiceImpl<OutboundMapper, Outbound> {
         wrapper.ge(Outbound::getCreateTime, java.time.LocalDate.now().atStartOfDay());
         return this.count(wrapper);
     }
+
+    // AI助手：统计待审批的出库单数量
+    public long countPendingApproval() {
+        LambdaQueryWrapper<Outbound> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Outbound::getStatus, 1); // 1表示待审批状态
+        return this.count(wrapper);
+    }
+
+    // AI助手：获取本月销售出库最多的配件
+    public java.util.Map<String, Object> getTopOutboundPart(String month) {
+        LambdaQueryWrapper<Outbound> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(Outbound::getCreateTime, month);
+        wrapper.eq(Outbound::getStatus, 2); // 已完成的出库单
+        wrapper.eq(Outbound::getType, "XSCK"); // 销售出库
+        
+        java.util.List<Outbound> list = this.list(wrapper);
+        
+        // 按配件名称分组统计出库数量
+        java.util.Map<String, Integer> partCount = new java.util.HashMap<>();
+        for (Outbound outbound : list) {
+            String partName = outbound.getPartName();
+            partCount.put(partName, partCount.getOrDefault(partName, 0) + outbound.getQuantity());
+        }
+        
+        // 找出数量最多的配件
+        String topPart = null;
+        int maxQty = 0;
+        for (java.util.Map.Entry<String, Integer> entry : partCount.entrySet()) {
+            if (entry.getValue() > maxQty) {
+                maxQty = entry.getValue();
+                topPart = entry.getKey();
+            }
+        }
+        
+        if (topPart != null) {
+            java.util.Map<String, Object> result = new java.util.HashMap<>();
+            result.put("partName", topPart);
+            result.put("quantity", maxQty);
+            return result;
+        }
+        
+        return null;
+    }
 }

@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/auto_parts_warehouse?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
-    username: root
-    password: xmx992992
+    url: jdbc:mysql://localhost:3306/auto_parts_warehouse?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:xmx992992}
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -15,8 +15,8 @@ spring:
   mail:
     host: smtp.qq.com
     port: 587
-    username: 2060045841@qq.com
-    password: dahcgghoyjwxcehd
+    username: ${MAIL_USERNAME:2060045841@qq.com}
+    password: ${MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
@@ -35,3 +35,10 @@ mybatis-plus:
 jwt:
   secret: auto-parts-warehouse-secret-key-2024
   expiration: 86400000
+
+# AI助手配置
+ai:
+  enabled: ${AI_ENABLED:true}                              # 是否启用AI助手功能
+  api-key: ${AI_API_KEY:}                                   # 阿里云百炼API密钥（通过环境变量设置）
+  api-url: ${AI_API_URL:https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions}  # 阿里云百炼API地址
+  model-name: ${AI_MODEL_NAME:qwen3-max}                    # 模型名称

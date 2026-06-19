@@ -1,0 +1,63 @@
+# ============================================
+# 汽车配件仓库管理系统 - 配置模板
+# ============================================
+# 使用说明：
+#   1. 复制此文件为 application.yml
+#   2. 设置以下环境变量（不要硬编码在配置文件中）：
+#     - DB_USERNAME / DB_PASSWORD    （MySQL 数据库）
+#     - MAIL_USERNAME / MAIL_PASSWORD（邮件服务）
+#     - AI_API_KEY                   （阿里云百炼 API Key）
+#     - AI_ENABLED                   （是否启用 AI，默认 true）
+#     - AI_MODEL_NAME                （模型名称，默认 qwen3-max）
+# ============================================
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/auto_parts_warehouse?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.autoparts.warehouse.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+jwt:
+  secret: auto-parts-warehouse-secret-key-2024
+  expiration: 86400000
+
+# AI助手配置（通过环境变量注入，不要在此硬编码 API Key）
+ai:
+  enabled: ${AI_ENABLED:true}
+  api-key: ${AI_API_KEY:}
+  api-url: ${AI_API_URL:https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions}
+  model-name: ${AI_MODEL_NAME:qwen3-max}
+  embedding-model: ${AI_EMBEDDING_MODEL:text-embedding-v3}
+  timeout:
+    connect: 5000
+    read: 30000
+  rate-limit:
+    max-per-minute: 20

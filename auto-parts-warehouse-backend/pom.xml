@@ -18,8 +18,9 @@
     <description>汽车配件仓库管理系统</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <langchain4j.version>1.0.0</langchain4j.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,34 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
+        </dependency>
+
+        <!-- LangChain4j AI 框架（核心 + DashScope OpenAI 兼容模式） -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
+            <version>${langchain4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai</artifactId>
+            <version>${langchain4j.version}</version>
+        </dependency>
+        <!-- 后续 Phase 3 RAG 使用 -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-embeddings</artifactId>
+            <version>1.0.0-beta5</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-chroma</artifactId>
+            <version>1.0.0-beta5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
         </dependency>
 
         <dependency>

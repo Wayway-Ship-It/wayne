@@ -91,4 +91,14 @@ public class InboundService extends ServiceImpl<InboundMapper, Inbound> {
         wrapper.ge(Inbound::getCreateTime, java.time.LocalDate.now().atStartOfDay());
         return this.count(wrapper);
     }
+
+    // AI助手：获取本月入库总数量
+    public long getMonthInboundQty(String month) {
+        LambdaQueryWrapper<Inbound> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(Inbound::getCreateTime, month);
+        wrapper.eq(Inbound::getStatus, 2); // 已完成的入库单
+        return this.list(wrapper).stream()
+            .mapToLong(Inbound::getQuantity)
+            .sum();
+    }
 }

@@ -1,12 +1,19 @@
 <template>
   <div id="app">
     <router-view />
+    <!-- 登录页不显示 AI 助手 -->
+    <AIAssistant v-if="$route.name !== 'Login'" />
   </div>
 </template>
 
 <script>
+import AIAssistant from './components/AIAssistant.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    AIAssistant
+  }
 }
 </script>
 

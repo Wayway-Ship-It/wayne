@@ -82,4 +82,12 @@ public class PartService extends ServiceImpl<PartMapper, Part> {
     public long getPartCount() {
         return this.count();
     }
+
+    // AI助手：按名称模糊查询配件列表
+    public java.util.List<Part> listByName(String name) {
+        LambdaQueryWrapper<Part> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(Part::getPartName, name);
+        wrapper.eq(Part::getStatus, 1);
+        return this.list(wrapper);
+    }
 }

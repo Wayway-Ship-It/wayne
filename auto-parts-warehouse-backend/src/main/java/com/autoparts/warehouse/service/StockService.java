@@ -78,4 +78,19 @@ public class StockService extends ServiceImpl<StockMapper, Stock> {
         stock.setQuantity(stock.getQuantity() - quantity);
         this.updateById(stock);
     }
+
+    // AI助手：获取库存不足的配件列表
+    public java.util.List<Stock> getLowStockList() {
+        LambdaQueryWrapper<Stock> wrapper = new LambdaQueryWrapper<>();
+        wrapper.apply("quantity <= safe_stock");
+        wrapper.gt(Stock::getSafeStock, 0);
+        return this.list(wrapper);
+    }
+
+    // AI助手：获取库存总数量
+    public long getTotalStock() {
+        return this.list().stream()
+            .mapToLong(Stock::getQuantity)
+            .sum();
+    }
 }

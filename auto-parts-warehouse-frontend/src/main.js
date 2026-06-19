@@ -9,7 +9,8 @@ import axios from 'axios'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL || 'http://localhost:8080'
+axios.defaults.timeout = 30000
 axios.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token')
